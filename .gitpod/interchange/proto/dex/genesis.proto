@@ -1,0 +1,17 @@
+syntax = "proto3";
+package cosmonaut.interchange.dex;
+
+import "dex/sell_order_book.proto";
+import "dex/denom_trace.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/cosmonaut/interchange/x/dex/types";
+
+// GenesisState defines the dex module's genesis state.
+message GenesisState {
+    string port_id = 1;
+  repeated SellOrderBook sellOrderBookList = 2 [(gogoproto.nullable) = false];
+  repeated DenomTrace denomTraceList = 3 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

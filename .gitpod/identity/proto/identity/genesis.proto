@@ -1,0 +1,11 @@
+syntax = "proto3";
+package lisoleg.identity.identity;
+
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/lisoleg/identity/x/identity/types";
+
+// GenesisState defines the identity module's genesis state.
+message GenesisState {
+    // this line is used by starport scaffolding # genesis/proto/state
+}

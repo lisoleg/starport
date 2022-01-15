@@ -1,0 +1,47 @@
+syntax = "proto3";
+package lisoleg.identity.identity;
+
+import "gogoproto/gogo.proto";
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/lisoleg/identity/x/identity/types";
+option (gogoproto.goproto_getters_all) = false;
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateIdentity(MsgCreateIdentity) returns (MsgCreateIdentityResponse);
+      rpc UpdateIdentity(MsgUpdateIdentity) returns (MsgUpdateIdentityResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+// MsgCreateIdentity defines a message to create an identity
+message MsgCreateIdentity {
+  option (gogoproto.equal) = true;
+
+  string creator = 1;
+  string id = 2;
+  string pubKey = 3;
+  string certificate = 4;
+  string credentials = 5;
+  string owner = 6;
+  string data = 7;
+}
+
+message MsgCreateIdentityResponse {
+}
+
+message MsgUpdateIdentity {
+  string creator = 1;
+  string id = 2;
+  string pubKey = 3;
+  string certificate = 4;
+  string credentials = 5;
+  string owner = 6;
+  string data = 7;
+}
+
+message MsgUpdateIdentityResponse {
+}
+
+// this line is used by starport scaffolding # proto/tx/message

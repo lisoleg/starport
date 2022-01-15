@@ -1,0 +1,74 @@
+syntax = "proto3";
+package cosmonaut.interchange.dex;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "dex/sell_order_book.proto";
+import "dex/denom_trace.proto";
+// this line is used by starport scaffolding # 1
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/cosmonaut/interchange/x/dex/types";
+
+// Query defines the gRPC querier service.
+service Query {
+    // Queries a sellOrderBook by index.
+	rpc SellOrderBook(QueryGetSellOrderBookRequest) returns (QueryGetSellOrderBookResponse) {
+		option (google.api.http).get = "/cosmonaut/interchange/dex/sellOrderBook/{index}";
+	}
+
+	// Queries a list of sellOrderBook items.
+	rpc SellOrderBookAll(QueryAllSellOrderBookRequest) returns (QueryAllSellOrderBookResponse) {
+		option (google.api.http).get = "/cosmonaut/interchange/dex/sellOrderBook";
+	}
+
+// Queries a denomTrace by index.
+	rpc DenomTrace(QueryGetDenomTraceRequest) returns (QueryGetDenomTraceResponse) {
+		option (google.api.http).get = "/cosmonaut/interchange/dex/denomTrace/{index}";
+	}
+
+	// Queries a list of denomTrace items.
+	rpc DenomTraceAll(QueryAllDenomTraceRequest) returns (QueryAllDenomTraceResponse) {
+		option (google.api.http).get = "/cosmonaut/interchange/dex/denomTrace";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+message QueryGetSellOrderBookRequest {
+	  string index = 1;
+
+}
+
+message QueryGetSellOrderBookResponse {
+	SellOrderBook sellOrderBook = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSellOrderBookRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSellOrderBookResponse {
+	repeated SellOrderBook sellOrderBook = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetDenomTraceRequest {
+	  string index = 1;
+
+}
+
+message QueryGetDenomTraceResponse {
+	DenomTrace denomTrace = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllDenomTraceRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllDenomTraceResponse {
+	repeated DenomTrace denomTrace = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3
