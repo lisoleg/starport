@@ -1,0 +1,100 @@
+syntax = "proto3";
+package cosmonaut.planet.blog;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "blog/post.proto";
+import "blog/sent_post.proto";
+import "blog/timedout_post.proto";
+// this line is used by starport scaffolding # 1
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/cosmonaut/planet/x/blog/types";
+
+// Query defines the gRPC querier service.
+service Query {
+    // Queries a post by id.
+	rpc Post(QueryGetPostRequest) returns (QueryGetPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/post/{id}";
+	}
+
+	// Queries a list of post items.
+	rpc PostAll(QueryAllPostRequest) returns (QueryAllPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/post";
+	}
+
+// Queries a sentPost by id.
+	rpc SentPost(QueryGetSentPostRequest) returns (QueryGetSentPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/sentPost/{id}";
+	}
+
+	// Queries a list of sentPost items.
+	rpc SentPostAll(QueryAllSentPostRequest) returns (QueryAllSentPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/sentPost";
+	}
+
+// Queries a timedoutPost by id.
+	rpc TimedoutPost(QueryGetTimedoutPostRequest) returns (QueryGetTimedoutPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/timedoutPost/{id}";
+	}
+
+	// Queries a list of timedoutPost items.
+	rpc TimedoutPostAll(QueryAllTimedoutPostRequest) returns (QueryAllTimedoutPostResponse) {
+		option (google.api.http).get = "/cosmonaut/planet/blog/timedoutPost";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+message QueryGetPostRequest {
+	uint64 id = 1;
+}
+
+message QueryGetPostResponse {
+	Post Post = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPostRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPostResponse {
+	repeated Post Post = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSentPostRequest {
+	uint64 id = 1;
+}
+
+message QueryGetSentPostResponse {
+	SentPost SentPost = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSentPostRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSentPostResponse {
+	repeated SentPost SentPost = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetTimedoutPostRequest {
+	uint64 id = 1;
+}
+
+message QueryGetTimedoutPostResponse {
+	TimedoutPost TimedoutPost = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllTimedoutPostRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllTimedoutPostResponse {
+	repeated TimedoutPost TimedoutPost = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

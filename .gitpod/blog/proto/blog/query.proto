@@ -1,0 +1,35 @@
+syntax = "proto3";
+package lisoleg.blog.blog;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/lisoleg/blog/x/blog/types";
+// Import the Post message
+import "blog/post.proto";
+
+message QueryPostsRequest {
+  // Adding pagination to request
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryPostsResponse {
+  // Returning a list of posts
+  repeated Post Post = 1;
+  // Adding pagination to response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Query defines the gRPC querier service.
+service Query {
+    // Queries a list of posts items.
+	rpc Posts(QueryPostsRequest) returns (QueryPostsResponse) {
+		option (google.api.http).get = "/lisoleg/blog/blog/posts";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+
+// this line is used by starport scaffolding # 3

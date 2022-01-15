@@ -1,0 +1,14 @@
+syntax = "proto3";
+package cosmonaut.planet.blog;
+
+option go_package = "github.com/cosmonaut/planet/x/blog/types";
+
+import "gogoproto/gogo.proto";
+
+
+message TimedoutPost {
+  uint64 id = 1;
+  string title = 2; 
+  string chain = 3; 
+  string creator = 4;
+}

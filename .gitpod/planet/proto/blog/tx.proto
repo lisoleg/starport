@@ -1,0 +1,117 @@
+syntax = "proto3";
+package cosmonaut.planet.blog;
+
+import "blog/post.proto";
+import "blog/sent_post.proto";
+import "blog/timedout_post.proto";
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/cosmonaut/planet/x/blog/types";
+
+// Msg defines the Msg service.
+service Msg {
+    rpc CreatePost(MsgCreatePost) returns (MsgCreatePostResponse);
+  rpc UpdatePost(MsgUpdatePost) returns (MsgUpdatePostResponse);
+  rpc DeletePost(MsgDeletePost) returns (MsgDeletePostResponse);
+rpc CreateSentPost(MsgCreateSentPost) returns (MsgCreateSentPostResponse);
+  rpc UpdateSentPost(MsgUpdateSentPost) returns (MsgUpdateSentPostResponse);
+  rpc DeleteSentPost(MsgDeleteSentPost) returns (MsgDeleteSentPostResponse);
+rpc CreateTimedoutPost(MsgCreateTimedoutPost) returns (MsgCreateTimedoutPostResponse);
+  rpc UpdateTimedoutPost(MsgUpdateTimedoutPost) returns (MsgUpdateTimedoutPostResponse);
+  rpc DeleteTimedoutPost(MsgDeleteTimedoutPost) returns (MsgDeleteTimedoutPostResponse);
+  rpc SendIbcPost(MsgSendIbcPost) returns (MsgSendIbcPostResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreatePost {
+  string creator = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message MsgCreatePostResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdatePost {
+  string creator = 1;
+  uint64 id = 2;
+  string title = 3;
+  string content = 4;
+}
+
+message MsgUpdatePostResponse {}
+
+message MsgDeletePost {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeletePostResponse {}
+
+message MsgCreateSentPost {
+  string creator = 1;
+  string postID = 2;
+  string title = 3;
+  string chain = 4;
+}
+
+message MsgCreateSentPostResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateSentPost {
+  string creator = 1;
+  uint64 id = 2;
+  string postID = 3;
+  string title = 4;
+  string chain = 5;
+}
+
+message MsgUpdateSentPostResponse {}
+
+message MsgDeleteSentPost {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteSentPostResponse {}
+
+message MsgCreateTimedoutPost {
+  string creator = 1;
+  string title = 2;
+  string chain = 3;
+}
+
+message MsgCreateTimedoutPostResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateTimedoutPost {
+  string creator = 1;
+  uint64 id = 2;
+  string title = 3;
+  string chain = 4;
+}
+
+message MsgUpdateTimedoutPostResponse {}
+
+message MsgDeleteTimedoutPost {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteTimedoutPostResponse {}
+
+message MsgSendIbcPost {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  string title = 5;
+  string content = 6;
+}
+
+message MsgSendIbcPostResponse {
+}
+// this line is used by starport scaffolding # proto/tx/message

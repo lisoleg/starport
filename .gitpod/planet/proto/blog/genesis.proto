@@ -1,0 +1,22 @@
+syntax = "proto3";
+package cosmonaut.planet.blog;
+
+import "blog/post.proto";
+import "blog/sent_post.proto";
+import "blog/timedout_post.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/cosmonaut/planet/x/blog/types";
+
+// GenesisState defines the blog module's genesis state.
+message GenesisState {
+    string port_id = 1;
+  repeated Post postList = 2 [(gogoproto.nullable) = false];
+  uint64 postCount = 3;
+  repeated SentPost sentPostList = 4 [(gogoproto.nullable) = false];
+  uint64 sentPostCount = 5;
+  repeated TimedoutPost timedoutPostList = 6 [(gogoproto.nullable) = false];
+  uint64 timedoutPostCount = 7;
+  // this line is used by starport scaffolding # genesis/proto/state
+}

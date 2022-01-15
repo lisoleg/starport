@@ -1,0 +1,10 @@
+syntax = "proto3";
+package lisoleg.blog.blog;
+option go_package = "github.com/lisoleg/blog/x/blog/types";
+
+message Post {
+  string creator = 1;
+  uint64 id = 2;
+  string title = 3; 
+  string body = 4; 
+}
